@@ -1,2 +1,2 @@
 testing temporary file
-bug testing from scratch 
+bug testing from scratch commit
