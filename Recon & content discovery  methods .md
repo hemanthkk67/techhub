@@ -1,5 +1,9 @@
 ## websites to start recon
 
+Recon plays a major role while hacking on a program.  Recon doesn’t always mean to find subdomains belonging to a company, it also could relate to finding out how a company is setting up its properties and what resources they are using.
+
+
+
 1)shodan.io
  
  SHODAN is designed to help the user find specific nodes (desktops, servers, routers, switches, etc.) with specific content
@@ -41,6 +45,9 @@ I observed this is an email finder and email verifier tool which allows to perfo
 10)spiderfoot.net(OSINT)
 
 ## Tools
+ 
+ There are different methods that may help us discover subdomains, internal resources, patterns used by a company, secret/private keys, API endpoints, and file/directory structures by combining different tools and resources. Doing a proper recon increases our attack surface and gives us a bigger scope to hack on in order to find more security vulnerabilities.
+
 
 1) ### dig
 
@@ -131,5 +138,4 @@ used to find the possible hidden directories for bruteforcing
 ~gobuster -h
 
 ~gobuster -e -u https://www.uber.com/ -w /usr/share/wordlists/dirb/common.txt
-~.
 
