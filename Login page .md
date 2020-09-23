@@ -2,31 +2,43 @@
 ***
 #### steps to to follow
 
-#Install apache2 and mysql server
+#### Install apache2 and mysql server
  
  sudo apt-get install apache2
  
  sudo apt-get mysql-server
 
-#Start apache2 and mysql server
+### Start apache2 and mysql server
 
 sudo service apache2 start
 
 sudo service mysql start
 
-#connect to mysql
+####  Download the Code :
+
+   git clone https://github.com/anir0y/verzeo-webapp 
+
+#Here the verzeo-webapp folder path should be change to /var/www/html
+
+#I changed webapp name as hemanthk
+
+#Give permissions to hemanthk 
+
+chmod -R 777 hemanthk
+
+#### connect to mysql
 
 sudo mysql -u root
 
-#create new database
+#### create new database
 
-create database hemanthdb;
+~ create database hemanthdb;
 
-show databases;  #to check database
+~ show databases;  #to check database
 
-use hemanthdb;   #to create tables &columns inside db
+~ use hemanthdb;   #to create tables &columns inside db
 
-#Create table and insert in to database
+#### Create table and insert in to database
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -35,24 +47,24 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
 
-#Now insert columns in to table
+#### Now insert columns in to table
 
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
+~ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
-#to see created clounmns inside the table
+#### To see created clounmns inside the table
 
 ~ select * from users  
 
-#create new user for mysql 
+#### create new user for mysql 
 
 ~ create user 'username'@'localhost' identified by 'password';
 
-#Grant permissions to this user
+### Grant permissions to this user
 
 ~ grant all privileges on hemanthdb.* to 'username'@'localhost' identified by 'password';
 
-~Now configuire credentials in dbconf.php
+#### Now configuire your own credentials in dbconf.php
 
 <?php
 $con = new mysqli("127.0.0.1", "username", "password", "hemanthdb");
@@ -70,12 +82,7 @@ else{
 
 #### Note: Things to be do before starting localhost
 
-#Here the webapp folder path should be in /var/www/html
 
-#my webapp name is hemanthk 
-
-#Give permissions to hemanthk 
-chmod -R 777 hemanthk
 
 # checking localhost status of my created page .  
 
@@ -84,26 +91,59 @@ chmod -R 777 hemanthk
 ***
 ### changing server name local host to virtual host
 ***
-~cd /etc/apache2/sites-available/
+Go to sites-available directory it shows the default config files
 
-~cp default.conf to hemanth.host.conf
+$ cd /etc/apache2/sites-available/
+
+000-default.conf  default-ssl.conf
+
+#### Here we can change the '000-default.conf' to your required name
+
+$cp 000-default.conf to hemanth.host.conf
+
+#### Now edit the .conf file 
 
 ~vim hemanth.host.conf   
 
-(add required path, host name)
+        #ServerName www.example.com
 
-~vim /etc/hosts    
-(add server name) 
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
 
-~ a2ensite hemanth.host.conf
 
-~ systemctl reload apache2
+#### (change server name  to your desired host name,give the path of the webapp name)
 
-~ ping  hemanth.host
+        ServerName hemanth.host
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html/hemanthk/
 
-~ curl hemanth.host -I
+#### mention the virtual host name in hosts 
+
+In this case my host name is hemanth.host
+
+$vim /etc/hosts    
+                    
+127.0.0.1       localhost hemanth.host 
+127.0.1.1       kali
+127.0.0.1       mydvwa.com
+#The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+#### To enable site hosted with Apache ,use the 'a2ensite and reload apache2 
+
+$a2ensite hemanth.host.conf
+
+$systemctl reload apache2
+
+#### check the host status
+
+$ ping  hemanth.host
+
+$curl hemanth.host -I
  
- now checked localhost with virtual host name ie. hemanth.host was succesfully loaded. 
+ now we can check localhost with virtual host name ie. 'hemanth.host' was succesfully loaded. 
 
 ***
 Bypassed login page 
