@@ -1,31 +1,88 @@
 ### created login web page using php,mysql database.  
 ***
+#### steps to to follow
 
-~connect to mysql 
+#Install apache2 and mysql server
+ 
+ sudo apt-get install apache2
+ 
+ sudo apt-get mysql-server
 
-~creating database
+#Start apache2 and mysql server
 
-~create user ,password and ~granted permissions 
+sudo service apache2 start
 
-~created table inside database , inserting user, passwd coloumns  in to table 
+sudo service mysql start
 
-~configuired dbconfig.php file 
+#connect to mysql
 
+sudo mysql -u root
 
-~connect to apache2 server 
+#create new database
 
-whwere my file name is hemanthk ie. path /var/www/html
+create database hemanthdb;
 
-~uploaded folder inside visual code 
+show databases;  #to check database
 
-commit changes to my github 
+use hemanthdb;   #to create tables &columns inside db
 
-~checking localhost status of my created page .  
+#Create table and insert in to database
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(200) NOT NULL,
+  `password` varchar(33) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+
+#Now insert columns in to table
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+
+#to see created clounmns inside the table
+
+~ select * from users  
+
+#create new user for mysql 
+
+~ create user 'username'@'localhost' identified by 'password';
+
+#Grant permissions to this user
+
+~ grant all privileges on hemanthdb.* to 'username'@'localhost' identified by 'password';
+
+~Now configuire credentials in dbconf.php
+
+<?php
+$con = new mysqli("127.0.0.1", "username", "password", "hemanthdb");
+if ($con -> connect_error){
+    die("Database Not Congigured Properly");
+}
+else{
+   // echo ("DB connection is established sir");
+}
+?>
+
+#Restart apache2 server
+
+~sudo service apache2 restart
+
+#### Note: Things to be do before starting localhost
+
+#Here the webapp folder path should be in /var/www/html
+
+#my webapp name is hemanthk 
+
+#Give permissions to hemanthk 
+chmod -R 777 hemanthk
+
+# checking localhost status of my created page .  
 
 ![image2](https://github.com/hemanthkk67/pethub/blob/master/WAPT%20from%20Scratch/Day2(create%20login%20page)/Screenshot_2020-09-21_11-46-45.png)
 
 ***
-### created virtual host for local host changing server name
+### changing server name local host to virtual host
 ***
 ~cd /etc/apache2/sites-available/
 
