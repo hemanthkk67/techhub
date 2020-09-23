@@ -80,11 +80,9 @@ else{
 
 ~sudo service apache2 restart
 
-#### Note: Things to be do before starting localhost
+# checking localhost status of my created page 
 
-
-
-# checking localhost status of my created page .  
+127.0.0.1/hemanthk/index.php/
 
 ![image2](https://github.com/hemanthkk67/pethub/blob/master/WAPT%20from%20Scratch/Day2(create%20login%20page)/Screenshot_2020-09-21_11-46-45.png)
 
@@ -121,7 +119,7 @@ $cp 000-default.conf to hemanth.host.conf
 
 In this case my host name is hemanth.host
 
-$vim /etc/hosts    
+$ vim /etc/hosts    
                     
 127.0.0.1       localhost hemanth.host 
 127.0.1.1       kali
@@ -146,9 +144,11 @@ $curl hemanth.host -I
  now we can check localhost with virtual host name ie. 'hemanth.host' was succesfully loaded. 
 
 ***
-Bypassed login page 
-tested with below credentials
-
- admin' or 1=1#
+#### Bypassed login page tested with SQL Injection 
+                      
+                      admin' or 1=1#
+                      admin' #
+                      admin'/*
+                      ' or 1=1--
 
  ![image1](https://github.com/hemanthkk67/pethub/blob/master/WAPT%20from%20Scratch/Day2(create%20login%20page)/Screenshot_2020-09-21_09-59-12.png)
