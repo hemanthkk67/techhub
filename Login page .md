@@ -32,27 +32,29 @@ sudo mysql -u root
 
 #### create new database
 
-    $ create database hemanthdb;
+    $ create database dbname;
 
     $ show databases;  #to check database
 
-    $ use hemanthdb;   #to create tables &columns inside db
+    $ use dbname;   #to create tables &columns inside db
 
-### Create table and insert in to database
+### Create table in to database
                     
- CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(200) NOT NULL,
-  `password` varchar(33) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
-
+ ```sh
+     CREATE TABLE IF NOT EXISTS `users` (
+     `id` int(11) NOT NULL AUTO_INCREMENT,
+     `username` varchar(200) NOT NULL,
+     `password` varchar(33) NOT NULL,
+      PRIMARY KEY (`id`)
+   )  ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+```
 
 #### Now insert columns in to table
 
- INSERT INTO `users` (`id`, `username`, `password`) VALUES
+ ```sh
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
-
+```
 ### To see created clounmns inside the table
 
 ~ select * from users  
@@ -65,10 +67,11 @@ sudo mysql -u root
 
 ~ grant all privileges on hemanthdb.* to 'username'@'localhost' identified by 'password';
 
-### Now configuire your own credentials in dbconf.php
+### Now  Changing the Configuration file in dbconf.php
 
+```sh
 <?php
-$con = new mysqli("127.0.0.1", "username", "password", "hemanthdb");
+$con = new mysqli("127.0.0.1", "dbuser", "dbpassword", "dbname");
 if ($con -> connect_error){
     die("Database Not Congigured Properly");
 }
@@ -76,6 +79,7 @@ else{
    // echo ("DB connection is established sir");
 }
 ?>
+```
 
 #Restart apache2 server
 
